@@ -14,6 +14,9 @@ connectDB();
 const app = express();
 // app.use(logger)
 
+//body parser
+app.use(express.json());
+
 //DEv logginf middleware
 if(process.env.NODE_ENV === "development"){
     app.use(morgan('dev'));
@@ -41,6 +44,6 @@ const server = app.listen(PORT,
 
 process.on('unhandledRejection', (err, promise ) => {
     console.log(`Unhandled rejection error ${err.message}`.red );
-    //cose server and exit
+    //close server and exit
     server.close(() => process.exit(1))
 })
